@@ -1,0 +1,100 @@
+﻿
+@*//@model IEnumerable<FintrakBudgetModel.PaymentViewModel>*@
+<div id="modaldiv">
+    <div class="col-lg-12" id="test">
+        <div class="modal fade" id="viewDetail" tabindex="-1" role="dialog" aria-labelledby="viewDetail" aria-hidden="true">
+            <div class="modal-dialog @*modal-lg*@">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title">Library Book Details </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td class="card-title text-primary mb-5-3"><b>Book Detail</b> </td>
+                        </tr>
+                        <tr>
+                            <td><b>Book Title :</b> <span id="mBook_title"></span></td>
+                            <td><b>Cover Price :</b> <span id="mCover_Price"></span></td>
+                        </tr>
+                        <tr>
+                            <td><b>ISBN :</b> <span id="mISBN"></span></td>
+                            <td><b>Publish Year :</b> <span id="mPublish_Year"></span></td>
+                        </tr>
+                        <tr>                            
+                            <td><b>Book Status :</b> <span id="mStatus"></span></td>
+                        </tr>
+                       
+                        <tr>
+                            <td class="card-title text-primary mb-5-3"><b>Borrower Detail</b> </td>
+                        </tr>
+                        <tr>
+                            <td><b>Name: </b> <span id="mName"></span></td>
+                            <td><b>Phone:</b> <span id="mMobile"></span></td>
+                        </tr>
+                        <tr>
+                            <td><b>ID :</b> <span id="mNational_ID"></span></td>
+                            <td><b>Date:</b> <span id="mDate_Check_Out"></span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Date:</b> <span id="mDate_Return"></span></td>
+                        </tr>
+                    </table>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-rounded" onclick="PrintContent();"><i class="mdi mdi-printer"></i>Print Detail</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+    function PrintContent() {
+
+        var DocumentContainer = document.getElementById('modaldiv');
+        var WindowObject = window.open("", "PrintWindow",
+            "width=750,height=650,top=50,left=50,toolbars=no,scrollbars=yes,status=no,resizable=yes");
+        WindowObject.document.write();
+        WindowObject.document.write('<link rel="stylesheet" type="text/css" href="~/Scripts/print.css">')
+        WindowObject.document.writeln(DocumentContainer.innerHTML);
+        WindowObject.document.close();
+        WindowObject.focus();
+        WindowObject.print();
+        WindowObject.close();
+    }
+
+        //$("#modaldiv").PrintThis({
+        //    debug: false,
+        //    importCSS: true,
+        //    printContainer: true,
+        //    loadCSS: "~/Scripts/print.css",
+        //    pageTitle: "My Modal",
+        //    removeInline: false,
+        //    printDelay: 333,
+        //    Header: null,
+        //    formValues: true
+        //});
+
+    //<link href="~/Scripts/print.css" rel="stylesheet" />
+
+    //function PrintContent() {
+
+    //    var DocumentContainer = document.getElementById('test');
+    //    var WindowObject = window.open("", "PrintWindow",
+    //        "width=750,height=650,top=50,left=50,toolbars=no,scrollbars=yes,status=no,resizable=yes");
+    //    WindowObject.document.write();
+    //    WindowObject.document.write('<link rel="stylesheet" type="text/css" href="path-to-my-stylesheet.css">')
+    //    WindowObject.document.writeln(DocumentContainer.innerHTML);
+    //    WindowObject.document.close();
+    //    WindowObject.focus();
+    //    WindowObject.print();
+    //    WindowObject.close();
+    //}
+
+</script>
+
+

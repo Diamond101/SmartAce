@@ -1,0 +1,61 @@
+﻿@model SmartAceModel.Books
+
+@using (Ajax.BeginForm("_Edit", "CheckinCheckOut", new AjaxOptions()
+{
+    Confirm = "Are you sure you want to update this Books Record?",
+    LoadingElementId = "divLoading",
+    OnBegin = "UpdateBegin",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "list",
+    OnSuccess = "UpdateSuccessful",
+    OnFailure = "Failed"
+
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ID, new { @Id = "txtID" })
+
+    <div class="col-lg-12">
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Check In BooK</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <tr>
+                                <td class="card-title text-primary mb-5-3"><b>Borrower Detail</b> </td>
+                            </tr>
+                            <tr>
+                                <td><b>Name: </b> <span id="mName1"></span></td>
+                            </tr>
+                            <tr>
+                                <td><b>Phone:</b> <span id="mMobile1"></span></td>
+                            </tr>
+                            <tr>
+                                <td><b>Expected Return Date:</b> <span id="mDate_Return1"></span></td>
+                            </tr>
+                            <tr>
+                                <td><b>Check Out Date:</b> <span id="mDate_Check_Out1"></span></td>
+                            </tr>                            
+                        </table>
+                        <div class="form-group row">
+                            <label class="col-sm-9 col-form-label">ISBN *</label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(u => u.ISBN, new { @id = "mISBN1", @Placeholder = "Enter Status Here", @class = "form-control", @required = "required" })
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning btn btn-rounded" data-dismiss="modal" id="closeEdit">Close</button>
+                        <button type="submit" class="btn btn-primary btn btn-rounded">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

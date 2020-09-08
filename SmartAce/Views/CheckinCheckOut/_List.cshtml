@@ -1,0 +1,59 @@
+﻿
+@model IEnumerable<SmartAceModel.Books>
+@{
+
+}
+
+<table class="table table-striped" style="width:100%" id="example">
+    <thead>
+        <tr>
+
+            <th>SN</th>
+            <th>ISBN</th>
+            <th>Published Year</th>
+            <th>Cover Price</th>
+            <th>Book Title</th>
+            <th>status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="example">
+        @{ int i = 0; }
+        @foreach (var modelitem in Model)
+        {
+            i++;
+        <tr>
+            <td class="py-1">@i</td>
+            <td>@Html.DisplayFor(m => modelitem.ISBN)</td>
+            <td>@Html.DisplayFor(m => modelitem.Publish_Year)</td>
+            <td>@Html.DisplayFor(m => modelitem.Cover_Price)</td>
+            <td>@Html.DisplayFor(m => modelitem.Book_title)</td>
+            <td>@Html.DisplayFor(m => modelitem.Status)</td>
+            <td>
+                @if (modelitem.Status.Equals("Check-in"))
+                {
+                    <button id="@modelitem.ID" type="button" onclick="loadView101(this.id);" style="background-color:grey; color:white;" class="btn btn-sm btn-outline-success btn-rounded" data-toggle="modal" data-target="#editModal" data-keyboard="false" data-backdrop="static" disabled><i class="mdi mdi-upload"></i>Check-in</button>
+                    <button @*id="@modelitem.ID" type="button" onclick="loadDetails(this.id);"*@ class="btn btn-sm btn-outline-success btn-rounded" data-toggle="modal" data-target="#createRequest" data-keyboard="false" data-backdrop="static"><i class="mdi mdi-upload"></i>Check-Out</button>
+                    <button id="@modelitem.ID" type="button" onclick="loadView(this.id);" class="btn btn-sm btn-outline-success btn-rounded" data-toggle="modal" data-target="#viewDetail" data-keyboard="false" data-backdrop="static"><i class="mdi mdi-upload"></i>Detail</button>
+
+                }
+
+           
+                @if (modelitem.Status.Equals("Check-Out"))
+                {
+
+                    <button id="@modelitem.ID" type="button" onclick="loadDetails(this.id);" style="background-color:grey; color:white;" class="btn btn-sm btn-outline-success btn-rounded" data-toggle="modal" data-target="#createRequest" data-keyboard="false" data-backdrop="static" disabled><i class="mdi mdi-upload"></i>Check-Out</button>
+                    <button id="@modelitem.ID" type="button" onclick="loadView101(this.id);" class="btn btn-sm btn-outline-success btn-rounded" data-toggle="modal" data-target="#editModal" data-keyboard="false" data-backdrop="static"><i class="mdi mdi-upload"></i>Check-In</button>
+                    <button id="@modelitem.ID" type="button" onclick="loadView(this.id);" class="btn btn-sm btn-outline-success btn-rounded" data-toggle="modal" data-target="#viewDetail" data-keyboard="false" data-backdrop="static"><i class="mdi mdi-upload"></i>Detail</button>
+
+                }
+
+            </td>
+
+            
+        </tr>
+        }
+    </tbody>
+
+</table>
+

@@ -1,0 +1,42 @@
+﻿
+@model IEnumerable<SmartAceModel.Users>
+@{
+
+}
+
+<table class="table table-striped" style="width:100%" id="example">
+    <thead>
+        <tr>
+
+            <th>SN</th>
+            <th>Photo</th>
+            <th>First Name</th>
+            <th>Surname</th>
+            <th>Role </th>
+            <th>User Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="example">
+        @{ int i = 0; }
+        @foreach (var modelitem in Model)
+        {
+            i++;
+            <tr>
+                <td class="py-1">@i</td>
+                <td><img src="@modelitem.Image" /></td>
+                <td>@Html.DisplayFor(m => modelitem.FirstName)</td>
+                <td>@Html.DisplayFor(m => modelitem.Surname)</td>
+                <td>@Html.DisplayFor(m => modelitem.Role)</td>
+                <td>@Html.DisplayFor(m => modelitem.Status)</td>
+                <td>
+                    <button id="@modelitem.ID" type="button" onclick="loadDetails(this.id);" class="btn btn-sm btn-outline-success btn-rounded" data-toggle="modal" data-target="#editModal" data-keyboard="false" data-backdrop="static"><i class="mdi mdi-upload"></i>Update</button>
+
+                    <button id="@modelitem.ID" type="button" onclick="ShowDeletePopUp(this.id);" class="btn btn-sm btn-outline-danger btn-rounded"><i class="mdi mdi-alert-outline"></i>Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+

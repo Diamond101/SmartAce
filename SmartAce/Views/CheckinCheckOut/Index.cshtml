@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = "Manager";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">LIST OF BOOKS</h4>                               
+                                <br />
+                                <div class="table-responsive" id="list">
+                                    @Html.Partial("_List")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divFormCreate">
+    @Html.Partial("_Create", new SmartAceModel.Borrow())
+</div>
+<div id="divFormView">
+    @Html.Partial("_View")
+</div>
+<div id="divFormEdit">
+    @Html.Partial("_Edit", new SmartAceModel.Books())
+</div>
+@*   <div id="divFormDelete" style="display: none">
+        @Html.Partial("_Delete", new SmartAceModel.Books())
+    </div>*@
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example').DataTable({ pageLength: 50 });
+    });
+
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+
+    function readFile() {
+        if (this.files && this.files[0]) {
+            var FR = new FileReader();
+            FR.addEventListener("load", function (e) {
+                $('#profileImg').val(e.target.result);
+            });
+
+            FR.readAsDataURL(this.files[0]);
+        }
+    }
+    document.getElementById("imgUpload").addEventListener("change", readFile);
+
+    function eReadFile() {
+        if (this.files && this.files[0]) {
+            var FR = new FileReader();
+            FR.addEventListener("load", function (e) {
+                $('#eprofileImg').val(e.target.result);
+            });
+
+            FR.readAsDataURL(this.files[0]);
+        }
+    }
+    document.getElementById("eimgUpload").addEventListener("change", eReadFile);
+
+    function loadView(id) {
+        $.ajax({
+            url: '@Url.Action("Index11", "CheckinCheckOut")',
+            method: "POST",
+            cache: false,
+            data: { id: id },
+            success: function (member) {
+                $('#txtID').html(member.ID);
+                $('#mBook_title').html(member.Book_title);
+                var dob = moment(member.Date_Check_Out).format('DD-MM-YYYY');
+                $('#mDate_Check_Out').html(dob); //
+                var dob1 = moment(member.Date_Return).format('DD-MM-YYYY');
+                $('#mDate_Return').html(dob1); //
+                $('#mISBN').html(member.ISBN);
+                $('#mMobile').html(member.Mobile);
+                $('#mPhone').html(member.Phone);
+                $('#mName').html(member.Name);
+                $('#mNational_ID').html(member.National_ID);
+                $('#mPublish_Year').html(member.Publish_Year);
+                $('#mStatus').html(member.Status);
+                $('#mCover_Price').html(member.Cover_Price);
+                $('#txtID').html(member.ID);
+            },
+            error: function () {
+                alert('Unable to fetch Books record.');
+            }
+        });
+    }
+
+    function loadView101(id) {
+        $.ajax({
+            url: '@Url.Action("Index101", "CheckinCheckOut")',
+            method: "POST",
+            cache: false,
+            data: { id: id },
+            success: function (member) {
+                $('#txtID').html(member.ID);
+                var dob = moment(member.Date_Check_Out).format('DD-MM-YYYY');
+                $('#mDate_Check_Out1').html(dob); //
+                var dob1 = moment(member.Date_Return).format('DD-MM-YYYY');
+                $('#mDate_Return1').html(dob1);
+                $('#mMobile1').html(member.Mobile);
+                $('#mName1').html(member.Name);
+                $('#mISBN1').val(member.ISBN);
+                $('#txtID').html(member.ID);
+            },
+            error: function () {
+                alert('Unable to fetch Books record.');
+            }
+        });
+    }
+
+    function ShowDeletePopUp(id) {
+        $('#txtDeleteID').val(id);
+        $('#btnDelete').click();
+    }
+
+    function Begin() {
+
+    }
+
+    function Successful() {
+        $('#closeCreate').click();
+        alert('New User added successfully.');
+        $('#example').DataTable();
+    }
+
+    function UpdateBegin() {
+
+    }
+
+    function UpdateSuccessful() {
+        $('#closeEdit').click();
+        alert('User record updated successfully.');
+        $('#example').DataTable();
+    }
+
+    function DeleteBegin() {
+
+    }
+
+    function DeleteSuccessful() {
+        alert('User record deleted successfully.');
+        $('#example').DataTable();
+    }
+
+    function Failed() {
+        alert('Operation failed please try agian.');
+    }
+</script>

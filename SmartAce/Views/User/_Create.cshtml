@@ -1,0 +1,130 @@
+﻿@model SmartAceModel.Users
+
+@using (Ajax.BeginForm("_Create", "User", new AjaxOptions()
+{
+    Confirm = "Are you sure you want to create this User?",
+    LoadingElementId = "divLoading",
+    OnBegin = "Begin",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "list",
+    OnSuccess = "Successful",
+    OnFailure = "Failed"
+}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="col-lg-12">
+        <div class="modal fade" id="createRequest" tabindex="-1" role="dialog" aria-labelledby="createRequest" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add New User</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">First Name *</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(u => u.FirstName, new { @Placeholder = "FirstName", @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Surname *</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(u => u.Surname, new { @Placeholder = "Surname", @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Role </label>
+                                    <div class="col-sm-9">
+                                        @Html.DropDownListFor(model => model.Role, new SelectList(
+                                            new List<Object>
+                                            {
+                                                new {value = "Admin     ", text = "Admin     "},
+                                                new {value = "User      ", text = "User      "},
+                                            }, "value", "text", 2), "Select One", new { @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Gender </label>
+                                    <div class="col-sm-9">
+                                        @Html.DropDownListFor(model => model.Gender, new SelectList(
+                                            new List<Object>
+                                            {
+                                                new {value = "Male", text = "Male"},
+                                                new {value = "Female", text = "Female"},
+                                            }, "value", "text", 2), "Select One", new { @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Status </label>
+                                    <div class="col-sm-9">
+                                        @Html.DropDownListFor(model => model.Status, new SelectList(
+                                            new List<Object>
+                                            {
+                                                new {value = "Active", text = "Active"},
+                                                new {value = "InActive", text = "InActive"},
+                                            }, "value", "text", 2), "Select One", new { @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Upload Photo</label>
+                                    <div class="col-sm-9">
+                                        <input type="file" id="imgUpload" class="form-control" />
+                                        @Html.HiddenFor(m => m.Image, new { @id = "profileImg" })
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Phone *</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(u => u.Phone, new { @Placeholder = "Phone", @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Email *</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(u => u.Email, new { @type = "Email", @Placeholder = "Email", @class = "form-control", @required = "required" })
+                                    </div>                                   
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Password *</label>
+                                    <div class="col-sm-9">
+                                        @Html.PasswordFor(u => u.Password, new { @Placeholder = "Password", @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning btn btn-rounded" data-dismiss="modal" id="closeCreate">Close</button>
+                        <button type="submit" class="btn btn-primary btn btn-rounded">Add New User</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

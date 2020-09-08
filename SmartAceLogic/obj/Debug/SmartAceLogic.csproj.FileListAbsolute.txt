@@ -1,0 +1,15 @@
+C:\SmartAce\SmartAceLogic\bin\Debug\SmartAceLogic.dll
+C:\SmartAce\SmartAceLogic\bin\Debug\SmartAceLogic.pdb
+C:\SmartAce\SmartAceLogic\bin\Debug\SmartAceData.dll
+C:\SmartAce\SmartAceLogic\bin\Debug\SmartAceModel.dll
+C:\SmartAce\SmartAceLogic\bin\Debug\EntityFramework.dll
+C:\SmartAce\SmartAceLogic\bin\Debug\CrytoLibrary.dll
+C:\SmartAce\SmartAceLogic\bin\Debug\SmartAceData.pdb
+C:\SmartAce\SmartAceLogic\bin\Debug\SmartAceModel.pdb
+C:\SmartAce\SmartAceLogic\bin\Debug\SmartAceModel.dll.config
+C:\SmartAce\SmartAceLogic\bin\Debug\EntityFramework.xml
+C:\SmartAce\SmartAceLogic\obj\Debug\SmartAceLogic.csprojAssemblyReference.cache
+C:\SmartAce\SmartAceLogic\obj\Debug\SmartAceLogic.csproj.CoreCompileInputs.cache
+C:\SmartAce\SmartAceLogic\obj\Debug\SmartAceLogic.csproj.CopyComplete
+C:\SmartAce\SmartAceLogic\obj\Debug\SmartAceLogic.dll
+C:\SmartAce\SmartAceLogic\obj\Debug\SmartAceLogic.pdb

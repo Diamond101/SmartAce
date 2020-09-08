@@ -1,0 +1,15 @@
+C:\SmartAce\SmartAceLogic\obj\Release\SmartAceLogic.csprojAssemblyReference.cache
+C:\SmartAce\SmartAceLogic\obj\Release\SmartAceLogic.csproj.CoreCompileInputs.cache
+C:\SmartAce\SmartAceLogic\bin\Release\SmartAceLogic.dll
+C:\SmartAce\SmartAceLogic\bin\Release\SmartAceLogic.pdb
+C:\SmartAce\SmartAceLogic\bin\Release\SmartAceData.dll
+C:\SmartAce\SmartAceLogic\bin\Release\SmartAceModel.dll
+C:\SmartAce\SmartAceLogic\bin\Release\EntityFramework.dll
+C:\SmartAce\SmartAceLogic\bin\Release\CrytoLibrary.dll
+C:\SmartAce\SmartAceLogic\bin\Release\SmartAceData.pdb
+C:\SmartAce\SmartAceLogic\bin\Release\SmartAceModel.pdb
+C:\SmartAce\SmartAceLogic\bin\Release\SmartAceModel.dll.config
+C:\SmartAce\SmartAceLogic\bin\Release\EntityFramework.xml
+C:\SmartAce\SmartAceLogic\obj\Release\SmartAceLogic.csproj.CopyComplete
+C:\SmartAce\SmartAceLogic\obj\Release\SmartAceLogic.dll
+C:\SmartAce\SmartAceLogic\obj\Release\SmartAceLogic.pdb

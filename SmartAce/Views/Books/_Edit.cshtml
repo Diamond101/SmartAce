@@ -1,0 +1,70 @@
+﻿@model SmartAceModel.Books
+
+@using (Ajax.BeginForm("_Edit", "Books", new AjaxOptions()
+{
+    Confirm = "Are you sure you want to update this Books Record?",
+    LoadingElementId = "divLoading",
+    OnBegin = "UpdateBegin",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "list",
+    OnSuccess = "UpdateSuccessful",
+    OnFailure = "Failed"
+
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ID, new { @Id = "txtID" })
+
+    <div class="col-lg-12">
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Update Discount Record</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-9 col-form-label">Book Title *</label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(u => u.Book_title, new { @id = "mBook_title", @Placeholder = "Enter Book Title Here", @class = "form-control", @required = "required" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-9 col-form-label">ISBN *</label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(u => u.ISBN, new { @id = "mISBN", @Placeholder = "Enter ISBN Here", @class = "form-control", @required = "required" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-9 col-form-label">Published Year *</label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(u => u.Publish_Year, new { @id = "mPublish_Year", @Placeholder = "Enter Published Year Here", @class = "form-control", @required = "required" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-9 col-form-label">Cover Price *</label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(u => u.Cover_Price, new { @id = "mCover_Price", @Placeholder = "Enter Discount Alias Here", @class = "form-control", @required = "required" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-9 col-form-label">Status *</label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(u => u.Status, new { @id = "mStatus", @Placeholder = "Enter Status Here", @class = "form-control", @required = "required" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning btn btn-rounded" data-dismiss="modal" id="closeEdit">Close</button>
+                        <button type="submit" class="btn btn-primary btn btn-rounded">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

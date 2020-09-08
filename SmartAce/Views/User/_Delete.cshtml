@@ -1,0 +1,20 @@
+﻿@model SmartAceModel.Users
+
+@using (Ajax.BeginForm("_Delete", "User", new AjaxOptions()
+{
+    Confirm = "Are you sure you want to Delete this User Record?",
+    LoadingElementId = "divLoading",
+    OnBegin = "DeleteBegin",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "list",
+    OnSuccess = "DeleteSuccessful",
+    OnFailure = "Failed"
+
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ID, new { @Id = "txtDeleteID" })
+
+    <input type="submit" id="btnDelete" value="" style="display: none" />
+}
+

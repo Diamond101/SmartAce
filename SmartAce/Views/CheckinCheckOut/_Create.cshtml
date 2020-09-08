@@ -1,0 +1,63 @@
+﻿
+@model SmartAceModel.Borrow
+
+@using (Ajax.BeginForm("_Create", "CheckinCheckOut", new AjaxOptions()
+{
+    Confirm = "Are you sure you want to create this Borrow this Book?",
+    LoadingElementId = "divLoading",
+    OnBegin = "Begin",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "list",
+    OnSuccess = "Successful",
+    OnFailure = "Failed"
+}))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-lg-12">
+        <div class="modal fade" id="createRequest" tabindex="-1" role="dialog" aria-labelledby="createRequest" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Check Out Book</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-9 col-form-label">Borrower Name *</label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(u => u.Name, new { @Placeholder = "Enter Name Here", @class = "form-control", @required = "required" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-9 col-form-label">Borrower Phone *</label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(u => u.Mobile, new { @onkeypress = "return isNumber(event)", @Placeholder = "Enter Phone Here", @class = "form-control", @required = "required" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-9 col-form-label">National ID *</label>
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(u => u.National_ID, new { @onkeypress = "return isNumber(event)", @Placeholder = "Identification Number", @class = "form-control", @required = "required" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-9 col-form-label">ISBN *</label>
+                            <div class="col-sm-12">
+                                @Html.DropDownListFor(u => u.ISBN, (SelectList)ViewBag.books, "Select Book to Borrow Here", new { @class = "form-control", @required = "required" })
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning btn btn-rounded" data-dismiss="modal" id="closeCreate">Close</button>
+                        <button type="submit" class="btn btn-primary btn btn-rounded">Check Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
